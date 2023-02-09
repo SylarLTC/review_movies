@@ -1,13 +1,10 @@
-const mongoose = require("mongoose");
-const request = require("supertest");
-
+import supertest from "supertest";
 const app = require("../server");
-
-require("dotenv").config();
+const request = supertest(app);
 
 describe("Test the root path", () => {
-  test("It should response the GET method", async () => {
-    const res = await request(app).get("/");
+  it("It should response the GET method", async () => {
+    const res = await request.get("/api/movies");
 
     expect(res.statusCode).toBe(200);
   });
