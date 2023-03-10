@@ -5,6 +5,8 @@ const {
   getMovie,
   deleteMovie,
   updateMovie,
+  searchMovieByTitle,
+  searchMovieByImdbId,
 } = require("../controllers/movieController");
 
 const router = express.Router();
@@ -23,5 +25,11 @@ router.delete("/:id", deleteMovie);
 
 // UPDATE a Movie
 router.patch("/:id", updateMovie);
+
+// SEARCH a Movie by Title
+router.get("/search/:title", searchMovieByTitle);
+
+// SEARCH a Movie by imdbId
+router.get("/searchid/:imdbId", searchMovieByImdbId);
 
 module.exports = router;
