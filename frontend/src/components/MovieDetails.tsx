@@ -34,10 +34,11 @@ export const MovieDetails = (props: IProps) => {
         <p className="movie-review">
           <strong>Review:</strong>
           <br />
+          {movie.review}
 
-          {movie.review.length > 100
-            ? `${movie.review.slice(0, 99)}...`
-            : movie.review}
+          {/* {movie.review.length > 50
+            ? `${movie.review.slice(0, 49)}...`
+            : movie.review} */}
         </p>
         <span className="material-symbols-outlined" onClick={handleDelete}>
           delete

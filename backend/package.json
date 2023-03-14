@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest --verbose --maxWorkers=1 --detectOpenHandles  --watchAll --coverage",
     "start": "nodemon server.ts",
-    "build": ".\\node_modules\\.bin\\tsc --project ./tsconfig.json"
+    "build": ".\\node_modules\\.bin\\tsc --project ./tsconfig.json",
+    "dev": "nodemon -L ./server.js localhost 4005"
   },
   "keywords": [],
   "author": "",

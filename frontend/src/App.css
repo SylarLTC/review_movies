@@ -255,7 +255,6 @@ textarea {
 
 .movie-details {
   display: flex;
-  flex-direction: row;
 }
 
 .movie-details-preview {
