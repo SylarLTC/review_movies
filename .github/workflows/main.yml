@@ -29,5 +29,5 @@ jobs:
         ECR_REPOSITORY: movie_ratings
         IMAGE_TAG: latest
       run: |
-        docker-compose build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        docker-compose build $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker-compose push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
