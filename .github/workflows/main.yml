@@ -64,5 +64,8 @@ jobs:
           SSH_HOST: ${{ secrets.AWS_EC2_HOST }}
           SSH_USER: ${{ secrets.AWS_EC2_USERNAME }}
           SSH_KEY: ${{ secrets.AWS_EC2_GITHUB_USER_KEY }} 
-      - name: List home directory
-        run: ssh ec2 'ls -la'
+      - name: send docker-compose file
+        run: | 
+          ls -la
+          scp ./review_movies/docker-compose.yaml ec2:/home/github/review_movies
+        
