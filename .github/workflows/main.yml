@@ -67,5 +67,5 @@ jobs:
       - name: send docker-compose file
         run: | 
           ls -la
-          scp ./review_movies/docker-compose.yaml ec2:/home/github/review_movies
+          scp ./docker-compose.yaml ec2:/home/github/review_movies/docker-compose.yaml
         
