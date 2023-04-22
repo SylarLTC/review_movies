@@ -41,3 +41,28 @@ jobs:
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG-$GITHUB_SHA -f backend/Dockerfile ./backend
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG-$GITHUB_SHA
+
+  deploy-to-ec2:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Git clone the repository
+        uses: actions/checkout@v3
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_KEY" > ~/.ssh/github-actions-key
+          chmod 600 ~/.ssh/github-actions-key
+          cat >>~/.ssh/config <<END
+          Host ec2
+            HostName $SSH_HOST
+            User $SSH_USER
+            IdentityFile ~/.ssh/github-actions-key
+            StrictHostKeyChecking no
+          END
+        env:
+          SSH_HOST: ${{ secrets.AWS_EC2_HOST }}
+          SSH_USER: ${{ secrets.AWS_EC2_USERNAME }}
+          SSH_KEY: ${{ secrets.AWS_EC2_GITHUB_USER_KEY }} 
+      - name: List home directory
+        run: ssh ec2 'ls -la'
