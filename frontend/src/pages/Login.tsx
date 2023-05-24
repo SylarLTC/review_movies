@@ -7,7 +7,7 @@ export const Login = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    console.log(email, password)
+    console.log(email, password);
   };
 
   return (
