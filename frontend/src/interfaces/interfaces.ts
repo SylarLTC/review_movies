@@ -27,3 +27,8 @@ export interface IMovie {
   updatedAt?: string;
   imdbID?: string;
 }
+
+export interface IUser {
+  email: string;
+  password: string;
+}
