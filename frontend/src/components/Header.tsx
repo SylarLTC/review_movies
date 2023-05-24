@@ -72,6 +72,13 @@ export const Header = (props: IProps) => {
             </button>
           </form>
         </div>
+
+        <nav>
+          <div>
+            <Link to="/login">Login</Link>
+            <Link to="/signup">Signup</Link>
+          </div>
+        </nav>
       </div>
       <div className="content">
         <div className="cards">
