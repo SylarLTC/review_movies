@@ -10,7 +10,7 @@ import { useMoviesContext } from "./hooks/useMoviesContext";
 
 export const App = () => {
   const [title, setTitle] = useState<string>("");
-  const {movies} = useMoviesContext();
+  const { movies } = useMoviesContext();
   return (
     <div className="App">
       <BrowserRouter>
@@ -20,7 +20,10 @@ export const App = () => {
             <Route path="/" element={<Home title={title} />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/movies/:imdbId" element={<MovieForm moviesMDB={movies} />} />
+            <Route
+              path="/movies/:imdbId"
+              element={<MovieForm moviesMDB={movies} />}
+            />
           </Routes>
         </div>
       </BrowserRouter>

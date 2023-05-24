@@ -44,11 +44,10 @@ export const Header = (props: IProps) => {
   return (
     <>
       <div className="header">
-        
         <Link className="home-btn" to="/" onClick={() => setTitle("")}>
           Home
         </Link>
-        
+
         <div className="searchBar">
           <form action="" method="get">
             <label htmlFor="searchBarInput">Search a movie:</label>
@@ -84,7 +83,9 @@ export const Header = (props: IProps) => {
         <div className="cards">
           {moviesAPI &&
             moviesAPI.map((movie) => {
-              return <MovieCard key={movie.imdbID} movie={movie} movies={movies} />;
+              return (
+                <MovieCard key={movie.imdbID} movie={movie} movies={movies} />
+              );
             })}
         </div>
       </div>
