@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import { Header } from "./components/Header";
 import { Home } from "./pages/Home";
+import { Login } from "./pages/Login";
+import { Signup } from "./pages/Signup";
 import { MovieForm } from "./pages/MovieForm";
 import { useMoviesContext } from "./hooks/useMoviesContext";
 
@@ -16,6 +18,8 @@ export const App = () => {
         <div className="pages">
           <Routes>
             <Route path="/" element={<Home title={title} />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
             <Route path="/movies/:imdbId" element={<MovieForm moviesMDB={movies} />} />
           </Routes>
         </div>
