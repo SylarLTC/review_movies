@@ -3,7 +3,7 @@ import { IUser } from "../interfaces/interfaces";
 
 interface IContextProps {
   user: IUser;
-  dispatch: ({ type }: { type: string; payload: string }) => void;
+  dispatch: ({ type }: { type: string; payload?: string }) => void;
 }
 
 export const AuthContext = createContext({} as IContextProps);
@@ -13,7 +13,7 @@ export const authReducer = (state:any, action:any) => {
     case "LOGIN":
       return { user: action.payload };
     case "LOGOUT":
-      return { user: null };
+      return { user: action.payload };
     default:
       return state;
   }

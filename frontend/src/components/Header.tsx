@@ -4,6 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { IMovieAPI, IMovie } from "../interfaces/interfaces";
 import { MovieCard } from "./MovieCard";
 import { useMoviesAPIContext } from "../hooks/useMoviesContext";
+import { useLogout } from "../hooks/useLogout";
 
 interface IProps {
   title: string;
@@ -14,6 +15,7 @@ interface IProps {
 export const Header = (props: IProps) => {
   const { title, setTitle, movies } = props;
   const location = useLocation();
+  const { logout } = useLogout();
 
   const { moviesAPI, dispatch } = useMoviesAPIContext();
 
@@ -40,6 +42,10 @@ export const Header = (props: IProps) => {
       setTitle("");
     }
   }, [title, location, dispatch, setTitle]);
+
+  const handleLogout = () => {
+    logout();
+  };
 
   return (
     <>
@@ -73,6 +79,9 @@ export const Header = (props: IProps) => {
         </div>
 
         <nav>
+          <div>
+            <button onClick={handleLogout}>Log out</button>
+          </div>
           <div>
             <Link to="/login">Login</Link>
             <Link to="/signup">Signup</Link>
