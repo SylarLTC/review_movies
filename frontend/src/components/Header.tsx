@@ -26,8 +26,16 @@ export const Header = (props: IProps) => {
   ) => {
     e.preventDefault();
 
+    if (!user) {
+      return;
+    }
+
     try {
-      const res = await axios.get("/api/movies/search/" + title);
+      const res = await axios.get("/api/movies/search/" + title, {
+        headers: {
+          'Authorization': `Bearer ${user.token}`,
+        },
+      });
 
       const movies: IMovieAPI[] = await res.data;
 
