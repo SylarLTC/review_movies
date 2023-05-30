@@ -40,7 +40,7 @@ export const Header = (props: IProps) => {
       const movies: IMovieAPI[] = await res.data;
 
       dispatch({ type: "SET_MOVIES", payload: movies });
-      console.log(movies);
+      // console.log(movies);
     } catch (error) {
       console.log(error);
     }

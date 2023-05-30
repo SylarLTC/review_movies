@@ -26,10 +26,10 @@ export const Home = (props: IProps) => {
       if (response.ok) {
         dispatch({ type: "SET_MOVIES", payload: movieJson });
       }
-      console.log("movieJson:", movieJson);
+      // console.log("movieJson:", movieJson);
     };
 
-    console.log("render movies");
+    // console.log("render movies");
 
     if (user) {
       fetchMovies();

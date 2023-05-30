@@ -3,7 +3,7 @@ import { IMovie } from "../interfaces/interfaces";
 
 interface IContextProps {
   movies: IMovie[];
-  dispatch: ({ type }: { type: string; payload: string[] }) => void;
+  dispatch: ({ type }: { type: string; payload: string[] | null }) => void;
 }
 
 export const MoviesContext = createContext({} as IContextProps);

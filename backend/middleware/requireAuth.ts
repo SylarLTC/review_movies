@@ -6,7 +6,7 @@ const User = require("../models/userModel");
 declare global {
   namespace Express {
     interface Request {
-      user?: String;
+      user: any;
     }
   }
 }
