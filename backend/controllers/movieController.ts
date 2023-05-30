@@ -10,7 +10,9 @@ const Movie = require("../models/movieModel");
 
 // get all movies
 const getMovies = async (req: Request, res: Response) => {
-  const movies: IMovie[] = await Movie.find({}).sort({ createdAt: -1 });
+  const user_id = req.user._id;
+
+  const movies: IMovie[] = await Movie.find({ user_id }).sort({ createdAt: -1 });
 
   res.status(200).json(movies);
 };
@@ -63,6 +65,7 @@ const createMovie = async (req: Request, res: Response) => {
   // }
 
   try {
+    const user_id = req.user._id;
     const movie: IMovie = await Movie.create({
       title,
       release,
@@ -70,6 +73,7 @@ const createMovie = async (req: Request, res: Response) => {
       poster,
       review,
       imdbID,
+      user_id,
     });
     res.status(200).json(movie);
   } catch (error) {

@@ -5,6 +5,7 @@ export interface IMovie {
   poster: string;
   imdbID: string;
   review: string;
+  user_id: string;
 }
 
 export interface IMovieDb {

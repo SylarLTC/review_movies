@@ -65,7 +65,7 @@ export const MovieForm = (props: IProps) => {
       }
     };
 
-    console.log("render movieForm");
+    // console.log("render movieForm");
 
     fetchMovies();
   }, [location.pathname, user]);
