@@ -1,4 +1,5 @@
 import express from "express";
+import { requireAuth } from "../middleware/requireAuth";
 const {
   getMovies,
   createMovie,
@@ -10,6 +11,9 @@ const {
 } = require("../controllers/movieController");
 
 const router = express.Router();
+
+// require auth for all movie routes
+router.use(requireAuth);
 
 // GET all movies
 router.get("/", getMovies);
