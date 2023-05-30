@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useEffect } from "react";
 import { IUser } from "../interfaces/interfaces";
 
 interface IContextProps {
@@ -8,7 +8,7 @@ interface IContextProps {
 
 export const AuthContext = createContext({} as IContextProps);
 
-export const authReducer = (state:any, action:any) => {
+export const authReducer = (state: any, action: any) => {
   switch (action.type) {
     case "LOGIN":
       return { user: action.payload };
@@ -19,16 +19,28 @@ export const authReducer = (state:any, action:any) => {
   }
 };
 
-export const AuthContextProvider = ({ children }:any) => {
+export const AuthContextProvider = ({ children }: any) => {
   const [state, dispatch] = useReducer(authReducer, {
     user: null,
   });
 
-  console.log('AuthContext state: ', state)
+  useEffect(() => {
+    const valueString = localStorage.getItem("user");
+
+    if (typeof valueString === "string") {
+      const user = JSON.parse(valueString); // ok
+
+      if (user) {
+        dispatch({ type: "LOGIN", payload: user });
+      }
+    }
+  }, []);
+
+  console.log("AuthContext state: ", state);
 
   return (
-    <AuthContext.Provider value={{...state, dispatch}}>
-        {children}
+    <AuthContext.Provider value={{ ...state, dispatch }}>
+      {children}
     </AuthContext.Provider>
-  )
+  );
 };
