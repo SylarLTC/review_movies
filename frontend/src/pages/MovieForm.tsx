@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useMoviesContext } from "../hooks/useMoviesContext";
 import { IMovie, IMovieDB } from "../interfaces/interfaces";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 interface IProps {
   moviesMDB: IMovie[];
@@ -9,10 +10,13 @@ interface IProps {
 
 export const MovieForm = (props: IProps) => {
   const { moviesMDB } = props;
+  const { user } = useAuthContext();
 
   const location = useLocation();
   const navigate = useNavigate();
   const maxLengthTextarea = 1000;
+
+  const [error, setError] = useState<string | null>(null);
 
   const [count, setCount] = useState<number>(0);
   const [movie, setMovie] = useState<IMovieDB | null>(null);
@@ -40,7 +44,12 @@ export const MovieForm = (props: IProps) => {
   useEffect(() => {
     const fetchMovies = async () => {
       const response = await fetch(
-        "/api/movies/searchid/" + location.pathname.slice(8)
+        "/api/movies/searchid/" + location.pathname.slice(8),
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
       );
 
       const movieJson = await response.json();
@@ -59,10 +68,15 @@ export const MovieForm = (props: IProps) => {
     console.log("render movieForm");
 
     fetchMovies();
-  }, [location.pathname]);
+  }, [location.pathname, user]);
 
   const handleCreate = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!user) {
+      setError("You must be logged in");
+      return;
+    }
 
     const movie = { title, release, type, poster, review, imdbID };
 
@@ -71,6 +85,7 @@ export const MovieForm = (props: IProps) => {
       body: JSON.stringify(movie),
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${user.token}`,
       },
     });
 
@@ -92,6 +107,7 @@ export const MovieForm = (props: IProps) => {
       body: JSON.stringify(movie),
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${user.token}`,
       },
     });
 

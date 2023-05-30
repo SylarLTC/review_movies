@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useMoviesContext } from "../hooks/useMoviesContext";
 import { IMovie } from "../interfaces/interfaces";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 interface IProps {
   movie: IMovie;
@@ -10,10 +11,18 @@ interface IProps {
 export const MovieDetails = (props: IProps) => {
   const { movie } = props;
   const { dispatch } = useMoviesContext();
+  const { user } = useAuthContext();
 
   const handleDelete = async () => {
+    if (!user) {
+      return
+    }
+
     const response = await fetch("/api/movies/" + movie._id, {
       method: "DELETE",
+      headers: {
+        'Authorization': `Bearer ${user.token}`,
+      }
     });
     const json = await response.json();
 
