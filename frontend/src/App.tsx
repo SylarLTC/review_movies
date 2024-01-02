@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import "./App.css";
+import "./App.scss";
 import { useMoviesContext } from "./hooks/useMoviesContext";
 import { useAuthContext } from "./hooks/useAuthContext";
 

@@ -34,7 +34,7 @@ export const MovieDetails = (props: IProps) => {
   return (
     <div className="movie-details">
       <Link to={`/movies/${movie.imdbID}`}>
-        <img src={movie.poster} alt="" />
+        <img src={movie.poster} alt={movie.title} />
       </Link>
       <div className="movie-details-preview">
         <p className="movie-title">{movie.title}</p>

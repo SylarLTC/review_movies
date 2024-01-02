@@ -135,7 +135,7 @@ export const MovieForm = (props: IProps) => {
             className="movieForm-form"
           >
             <div className="movieForm-form-img">
-              <img src={movie.Poster} alt="" />
+              <img src={movie.Poster} alt={movie.Title} />
             </div>
             <div className="movieForm-form-content">
               <p className="movie-title">{movie.Title}</p>

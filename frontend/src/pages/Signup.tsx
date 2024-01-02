@@ -16,21 +16,25 @@ export const Signup = () => {
     <form className="signup" onSubmit={handleSubmit}>
       <h3>Sign up</h3>
 
-      <label>Email:</label>
+      <div className="email">
+      <label>Email: </label>
       <input
         type="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
+      </div>
 
-      <label>Password:</label>
+      <div className="password">
+      <label>Password: </label>
       <input
         type="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
+      </div>
 
-      <button disabled={isLoading}>Sign up</button>
+      <button className="search-btn" disabled={isLoading}>Sign up</button>
       {error && <div className="error">{error}</div>}
     </form>
   );

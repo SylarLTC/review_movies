@@ -33,7 +33,7 @@ export const Header = (props: IProps) => {
     try {
       const res = await axios.get("/api/movies/search/" + title, {
         headers: {
-          'Authorization': `Bearer ${user.token}`,
+          Authorization: `Bearer ${user.token}`,
         },
       });
 
@@ -60,45 +60,58 @@ export const Header = (props: IProps) => {
   return (
     <>
       <div className="header">
-        <Link className="home-btn" to="/" onClick={() => setTitle("")}>
-          Home
-        </Link>
+        {user && (
+          <Link className="home-btn" to="/" onClick={() => setTitle("")}>
+            Home
+          </Link>
+        )}
 
-        <div className="searchBar">
-          <form action="" method="get">
-            <label htmlFor="searchBarInput">Search a movie:</label>
-            <input
-              type="search"
-              value={title}
-              placeholder="Search..."
-              id="searchBarInput"
-              className="input-search"
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setTitle(e.target.value)
-              }
-            />
+        {user && (
+          <div className="searchBar">
+            <form action="" method="get">
+              <label htmlFor="searchBarInput">Search a movie:</label>
+              <input
+                // type="search"
+                value={title}
+                placeholder="Search..."
+                id="searchBarInput"
+                className="input-search"
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setTitle(e.target.value)
+                }
+              />
 
-            <button
-              className="search-btn"
-              onClick={handleSearchSubmit}
-              type="submit"
-            >
-              Search
-            </button>
-          </form>
-        </div>
+              <button
+                className="search-btn"
+                onClick={handleSearchSubmit}
+                type="submit"
+              >
+                Search
+              </button>
+            </form>
+          </div>
+        )}
 
-        <nav>
+        <nav className="nav-user">
           {user && (
-            <div>
+            <div className="user-wrapper">
+              <div className="user-avatar">
+                {user.email.slice(0, 1).toUpperCase()}
+              </div>
               <span>{user.email}</span>
-              <button onClick={handleLogout}>Log out</button>
+              <Link to="/" className="search-btn" onClick={handleLogout}>
+                Log out
+              </Link>
             </div>
           )}
           {!user && (
-            <div>
-              <Link to="/login">Login</Link>
-              <Link to="/signup">Signup</Link>
+            <div className="user-btns-login-signup">
+              <Link className="search-btn" to="/login">
+                Login
+              </Link>
+              <Link className="search-btn" to="/signup">
+                Signup
+              </Link>
             </div>
           )}
         </nav>
