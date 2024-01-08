@@ -2,7 +2,7 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
+  "main": "dist/server.ts",
   "scripts": {
     "test": "jest --verbose --maxWorkers=1 --detectOpenHandles  --watchAll --coverage",
     "start": "nodemon server.ts",
