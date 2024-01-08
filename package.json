@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "## Project Overview",
   "engines": {
-    "node": "21.x"
+    "node": "21.x",
+    "npm": "10.2.4"
   },
   "main": "dist/server.ts",
   "scripts": {
