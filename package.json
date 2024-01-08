@@ -6,10 +6,10 @@
     "node": "21.x",
     "npm": "10.2.4"
   },
-  "main": "dist/server.ts",
+  "main": "server.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cd backend && node dist/server.ts"
+    "start": "cd backend && node server.ts"
   },
   "dependencies": {
     "axios": "^1.3.2",
